@@ -42,6 +42,10 @@ case "$target" in
 arm-linux*-android*|*-linuxandroid*)
     android_tool_prefix="arm-linux-androideabi"
     ;;
+aarch64-linux*-android*)
+    android_tool_prefix="aarch64-linux-android"
+    echo "FOUND AARCH64"
+    ;;
 i?86-*android*)
     android_tool_prefix="i686-linux-android"
     ;;
@@ -64,10 +68,13 @@ case "$target" in
 
         kernel_name=`uname -s | tr "[[:upper:]]" "[[:lower:]]"`
 
-        for version in $android_gnu_compiler_version 4.6 4.4.3 ; do
+        for version in $android_gnu_compiler_version 4.9 4.8 4.7 4.6 4.4.3 ; do
             case "$target_cpu" in
             arm)
                 target_name=arm-linux-androideabi-$version
+                ;;
+            aarch64)
+                target_name=aarch64-linux-android-$version
                 ;;
             i?86)
                 target_name=x86-$version
@@ -99,6 +106,9 @@ case "$target" in
         case "$target_cpu" in
         arm)
             target_name=arm
+            ;;
+        aarch64)
+            target_name=arm64
             ;;
         i?86)
             target_name=x86

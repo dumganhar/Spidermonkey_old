@@ -1024,6 +1024,10 @@ arm*)
     CPU_ARCH=arm
     ;;
 
+aarch64*)
+    CPU_ARCH=aarch64
+    ;;
+
 mips|mipsel)
     CPU_ARCH="mips"
     ;;
@@ -2109,6 +2113,10 @@ arm*-*)
     ENABLE_YARR_JIT=1
     AC_DEFINE(JS_CPU_ARM)
     AC_DEFINE(JS_NUNBOX32)
+    ;;
+aarch64*-*)
+    ENABLE_ION=1
+    AC_DEFINE(JS_CPU_ARM64)
     ;;
 sparc*-*)
     if test ! "$HAVE_64BIT_OS" ; then
